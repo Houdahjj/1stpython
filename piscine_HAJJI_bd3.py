@@ -167,22 +167,19 @@ else:
 
 #exo18
 
-print("Saisir une chaine de caractère")
-ch = input()
-
-if "@" and "." in ch :
-    val = len(ch)-ch.index('.')-1
-    if val<=3 :
-        print("email valide")
-    else :
-        print("Trop de caractères après le point")
+a = input("Saisir une adresse mail valide")
+ch = '.'+a[-3:]
+ch1 = '.'+a[-2:]
+ch2 = '.'+a[-1:]
+if "@" in a and "." in a and (a.endswith(ch) or a.endswith(ch1) or a.endswith(ch2)) :
+    print("mail valide")
 else :
-    print("email invalide")
+    print("mail invalide")
 
 #exo19
 
 truc = []
-machin = [0.0,0.0,0.0,0.0,0.0]
+machin = [0.0]*5
 print(truc)
 print(machin)
 
