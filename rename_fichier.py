@@ -1,8 +1,8 @@
 import os
 import re
 
-#Pb pour le moment : La regex qui detecte que si c un nombre et non pas le nb de car
-#Quand on incremente ça enlève les 0
+#A ameliorer : La regex qui detecte que si c un nombre et non pas le nb de car
+#Quand on incremente ça enlève les 0 quand c'est sur 3caractères
 #Il faut modifier certains if en while
 
 increment = input("Veuillez choisir un incrément : ")   #Initialisation de increment
@@ -31,8 +31,9 @@ if test :                                               #Si test est ok, alors o
                 print("Nb de caractère trop grand, recommencez")                              # on lance une erreur
                 break
             nfc = os.path.join(rep, nom)                    #Nfc devient notre chemin, pour cela on concatène le nom du repertoire et chaque nom de fichier
+            fileName, fileExtension = os.path.splitext(nfc)
             if os.path.isfile(nfc):
-                os.rename(nfc, os.path.join(rep, increment + '-' + texte + '-' + nom[(nb - 1):]))       #On met nfc en chemin de base car il contient le nom du répertoire/chaquefichierdudossier
+                os.rename(nfc, os.path.join(rep, increment + '-' + texte + '-' + nom[nb:-4] + fileExtension))       #On met nfc en chemin de base car il contient le nom du répertoire/chaquefichierdudossier
                                                                                                         #En 2e argument on renomme le fichier avec les nouvelles saisies de l'utilisateur et avec la sous liste nb-1 pour savoir à partir de cb de car on garde
                 increment = int(increment)               #On caste increment (str) en int pour pouvoir l'incrémenter
                 increment = increment+1
@@ -45,8 +46,9 @@ if test :                                               #Si test est ok, alors o
                 print("Nb de caractère trop grand, recommencez")
                 break
             nfc = os.path.join(rep, nom)
+            fileName, fileExtension = os.path.splitext(nfc)
             if os.path.isfile(nfc):
-                os.rename(nfc, os.path.join(rep, increment + '-' + nom[(nb - 1):]))
+                os.rename(nfc, os.path.join(rep, increment + '-' + nom[nb:-4] + fileExtension))
                 increment = int(increment)
                 increment = increment + 1
                 increment = str(increment)
