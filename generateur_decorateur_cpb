@@ -1,31 +1,32 @@
-#chiffre porte bonheur
+# chiffre porte bonheur
 
-def chiffrePorteBonheur(nb) :
-    if nb==1 :
+def chiffrePorteBonheur(nb):
+    if nb == 1:
         return True
-    elif nb<10 :
+    elif nb < 10:
         return False
-    nb1=str(nb)
-    nb2=0
-    i=0
-    while i<len(nb1) :
-        nb2=nb2+int(nb1[i])**2
-        i=i+1
-    return chiffrePorteBonheur(nb2)   
-    
-#générateurs
-
-def g() :
-    i=0
-    while i<26 :
-        yield chr(i+97)
-        i=i+1
+    nb1 = str(nb)
+    nb2 = 0
+    i = 0
+    while i < len(nb1):
+        nb2 = nb2 + int(nb1[i]) ** 2
+        i = i + 1
+    return chiffrePorteBonheur(nb2)
 
 
-def g2(nb) :
-    gen=g()
-    for i in gen :
-        for j in range(nb) :
+# générateurs
+
+def g():
+    i = 0
+    while i < 26:
+        yield chr(i + 97)
+        i = i + 1
+
+
+def g2(nb):
+    gen = g()
+    for i in gen:
+        for j in range(nb):
             yield i
 
 
@@ -35,11 +36,15 @@ def powerset(ensemble):
         yield []
     else:
         for item in powerset(ensemble[1:]):
-            yield [ensemble[0]]+item
+            yield [ensemble[0]] + item
             yield item
 
-#décorateur
+
+# décorateur
 
 gen = g2(6)
-for i in gen :
+for i in gen:
     print(i)
+
+
+print(chiffrePorteBonheur(13))
